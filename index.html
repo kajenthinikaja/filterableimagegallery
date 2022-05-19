@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<!-- Design by foolishdeveloper.com-->
+<html lang="en">
+<head>
+  <title>filterable gallery</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style media="screen">
+
+body{
+  line-height: 1.5;
+  font-family: sans-serif;
+}
+*{
+  margin:0;
+  box-sizing: border-box;
+}
+.container{
+  max-width: 1170px;
+  margin:auto;
+}
+.row{
+  display: flex;
+  flex-wrap: wrap;
+}
+img{
+  max-width: 100%;
+  vertical-align: middle;
+}
+/*.gallery*/
+.gallery{
+  width: 100%;
+  display: block;
+  min-height: 100vh;
+  background-color: #2a2932;
+  padding: 100px 0;
+}
+.gallery .gallery-filter{
+  padding: 0 15px;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 40px;
+}
+.gallery .gallery-filter .filter-item{
+  color: #ffffff;
+  font-size: 17px;
+  border: 2px solid white;
+  text-transform: uppercase;
+  display: inline-block;
+  border-radius: 20px;
+  margin-right: 8px;
+  cursor: pointer;
+  padding: 8px 20px 8px 20px;
+  line-height: 1.2;
+  transition: all 0.3s ease;
+}
+.gallery .gallery-filter .filter-item.active{
+  color: white;
+  border-color : #16ef33;
+  background: #16ef45;
+}
+.gallery .gallery-item{
+  width: calc(100% / 3);
+  padding: 15px;
+
+}
+.gallery .gallery-item-inner img{
+  width: 100%;
+  border: 3px solid #d4dad9;
+}
+.gallery .gallery-item.show{
+  animation: fadeIn 0.5s ease;
+}
+@keyframes fadeIn{
+  0%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
+  }
+}
+.gallery .gallery-item.hide{
+  display: none;
+}
+
+/*responsive*/
+@media(max-width: 491px){
+  .gallery .gallery-item{
+    width: 50%;
+  }
+}
+@media(max-width: 467px){
+    .gallery .gallery-item{
+    width: 100%;
+  }
+  .gallery .gallery-filter .filter-item{
+    margin-bottom: 10px;
+  }
+}
+
+  </style>
+</head>
+<body>
+
+<section class="gallery">
+  <div class="container">
+    <div class="row">
+      <div class="gallery-filter">
+        <span class="filter-item active" data-filter="all">all</span>
+        <span class="filter-item" data-filter="flower">flower</span>
+        <span class="filter-item" data-filter="laptop">laptop</span>
+        <span class="filter-item" data-filter="car">car</span>
+        <span class="filter-item" data-filter="house">house</span>
+      </div>
+    </div>
+    <div class="row">
+      <!-- gallery item start -->
+      <div class="gallery-item flower">
+        <div class="gallery-item-inner">
+          <img src="https://i.pinimg.com/originals/5d/9e/49/5d9e49c92fb45f52012d4020d85106b8.jpg" alt="flower">
+        </div>
+      </div>
+      <!-- gallery item end -->
+      <!-- gallery item start -->
+      <div class="gallery-item flower">
+        <div class="gallery-item-inner">
+          <img src="https://media.gettyimages.com/photos/easter-colorful-eggs-on-the-background-of-spring-flowers-bright-picture-id1361252447?s=612x612" alt="flower">
+        </div>
+      </div>
+      <!-- gallery item end -->
+      <!-- gallery item start -->
+      <div class="gallery-item car">
+        <div class="gallery-item-inner">
+          <img src="https://media.istockphoto.com/photos/ferrari-612-scaglietti-picture-id481743867?k=20&m=481743867&s=612x612&w=0&h=7YMwmY338y0ED56fPauC_DXCwK1KhXo0uznmvJYyBvE=" alt="car">
+        </div>
+      </div>
+      <!-- gallery item end -->
+      <!-- gallery item start -->
+      <div class="gallery-item house">
+        <div class="gallery-item-inner">
+          <img src="https://johnsonandrohan.com/wp-content/uploads/2019/10/Home-photo.jpg" alt="house">
+        </div>
+      </div>
+      <!-- gallery item end -->
+      <!-- gallery item start -->
+      <div class="gallery-item laplop">
+        <div class="gallery-item-inner">
+          <img src="https://www.uipi.com/wp-content/uploads/2019/05/istockphoto-666135210-612x612.jpg" alt="laptop">
+        </div>
+      </div>
+      <!-- gallery item end -->
+            <div class="gallery-item house">
+              <div class="gallery-item-inner">
+                <img src="https://theburgnews.com/wp-content/uploads/2017/05/House3.jpg" alt="house">
+              </div>
+            </div>
+
+      <div class="gallery-item laptop">
+        <div class="gallery-item-inner">
+          <img src="https://thetimesofafrica.com/wp-content/uploads/2022/03/african-market-franchise.jpg" alt="laptop">
+        </div>
+      </div>
+
+      <div class="gallery-item car">
+        <div class="gallery-item-inner">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJyHEe1uGM_lMdcmuJrtwOGKKE5KcgbsPL0w&usqp=CAU" alt="car">
+        </div>
+      </div>
+
+      <!-- gallery item start -->
+      <div class="gallery-item flower">
+        <div class="gallery-item-inner">
+          <img src="https://hermitageoils.com/wp-content/uploads/2015/10/genet-abs.jpg" alt="flower">
+        </div>
+      </div>
+      <!-- gallery item end -->
+    </div>
+  </div>
+</section>
+
+<script>
+
+
+ const filterContainer = document.querySelector(".gallery-filter"),
+ galleryItems = document.querySelectorAll(".gallery-item");
+
+ filterContainer.addEventListener("click", (event) =>{
+   if(event.target.classList.contains("filter-item")){
+     // deactivate existing active 'filter-item'
+     filterContainer.querySelector(".active").classList.remove("active");
+     // activate new 'filter-item'
+     event.target.classList.add("active");
+     const filterValue = event.target.getAttribute("data-filter");
+     galleryItems.forEach((item) =>{
+       if(item.classList.contains(filterValue) || filterValue === 'all'){
+        item.classList.remove("hide");
+         item.classList.add("show");
+       }
+       else{
+        item.classList.remove("show");
+        item.classList.add("hide");
+       }
+     });
+   }
+ });
+</script>
+</body>
+</html>
